@@ -1,5 +1,6 @@
 package com.promineotech.jeep.controller;
 
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,11 +24,6 @@ import io.swagger.v3.oas.annotations.servers.Server;
     @Server(url = "http://localhost:8080", description = "Local Server.")})
 public interface JeepOrderController {
   
-  /**
-   * 
-   */
-
-
   // @formatter:off
   @Operation(
       summary = "Create an order for a Jeep",
@@ -58,16 +54,8 @@ public interface JeepOrderController {
               description = "The order as JSON")
       }
   )
-// HOMEWORK WAY OF DOING IT
   @PostMapping
   @ResponseStatus(code = HttpStatus.CREATED)
-  Order createOrder(@RequestBody OrderRequest orderRequest);
+  Order createOrder(@Valid @RequestBody OrderRequest orderRequest);
   // @formatter:on  
 }
-
-//  VIDEO WAY OF DOING IT
-//  @GetMapping
-//  @ResponseStatus(code = HttpStatus.OK)
-//  List<Jeep> fetchJeeps(
-//      @RequestParam(required = false) JeepModel model,
-//      @RequestParam(required = false) String trim);

@@ -1,8 +1,6 @@
 package com.promineotech.jeep.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import org.apache.catalina.loader.ResourceEntry;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -17,8 +15,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
-import com.mysql.cj.x.protobuf.MysqlxCrud.Order;
 import com.promineotech.jeep.controller.support.CreateOrderTestSupport;
+import com.promineotech.jeep.entity.JeepModel;
+import com.promineotech.jeep.entity.Order;
 
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -38,8 +37,10 @@ class CreateOrderTest extends CreateOrderTestSupport {
     //Given: an order as JSON
     String body = createOrderBody();
     String uri = String.format("http://localhost:%d/orders", serverPort);
+    
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.APPLICATION_JSON);
+    
     HttpEntity<String> bodyEntity = new HttpEntity<>(body, headers);
     
     //When: the order is sent
@@ -48,8 +49,10 @@ class CreateOrderTest extends CreateOrderTestSupport {
     
     //Then: a 201 status is returned
     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+    
+    //And: the returned order si correct
     assertThat(response.getBody()).isNotNull();
-
+    
     Order order = response.getBody();
     assertThat(order.getCustomer().getCustomerId()).isEqualTo("MORISON_LINA");
     assertThat(order.getModel().getModelId()).isEqualTo(JeepModel.WRANGLER);
@@ -59,13 +62,5 @@ class CreateOrderTest extends CreateOrderTestSupport {
     assertThat(order.getEngine().getEngineId()).isEqualTo("2_0_TURBO");
     assertThat(order.getTire().getTireId()).isEqualTo("35_TOYO");
     assertThat(order.getOptions()).hasSize(6);
-    
-    //And: the returned order si correct
   }
-
-  /**
-   * 
-   */
-
-
 }
