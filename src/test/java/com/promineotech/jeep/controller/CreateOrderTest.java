@@ -37,7 +37,6 @@ class CreateOrderTest extends CreateOrderTestSupport{
     
     HttpEntity<String> bodyEntity = new HttpEntity<>(body, headers);
 
-    
     // When: the order is sent
     ResponseEntity<Order> response = getRestTemplate().exchange(uri,
         HttpMethod.POST, bodyEntity, Order.class);
