@@ -53,7 +53,6 @@ public interface JeepOrderController {
               description = "The order as JSON")
       }
   )
-// HOMEWORK WAY OF DOING IT
   @GetMapping
   @ResponseStatus(code = HttpStatus.CREATED)
   Order createOrder(@RequestBody OrderRequest orderRequest);
