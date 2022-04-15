@@ -1,5 +1,6 @@
 package com.promineotech.jeep.controller;
 
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,5 +56,5 @@ public interface JeepOrderController {
   )
   @GetMapping
   @ResponseStatus(code = HttpStatus.CREATED)
-  Order createOrder(@RequestBody OrderRequest orderRequest);
+  Order createOrder(@Valid @RequestBody OrderRequest orderRequest);
 }

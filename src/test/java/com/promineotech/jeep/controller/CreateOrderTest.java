@@ -45,6 +45,8 @@ class CreateOrderTest extends CreateOrderTestSupport{
     // Then: a 201 status is returned
     
     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+    
+    // And: the returned order is correct
     assertThat(response.getBody()).isNotNull();
 
     Order order = response.getBody();
@@ -56,8 +58,6 @@ class CreateOrderTest extends CreateOrderTestSupport{
     assertThat(order.getEngine().getEngineId()).isEqualTo("2_0_TURBO");
     assertThat(order.getTire().getTireId()).isEqualTo("35_TOYO");
     assertThat(order.getOptions()).hasSize(6);
-    
-    // And: the returned order is correct
   }
 
 
