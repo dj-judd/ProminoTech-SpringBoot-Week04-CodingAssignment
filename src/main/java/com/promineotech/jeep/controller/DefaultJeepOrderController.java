@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Slf4j
-public class BasicJeepOrderController implements JeepOrderController {
+public class DefaultJeepOrderController implements JeepOrderController {
 
   @Override
   public Order createOrder(OrderRequest orderRequest) {
