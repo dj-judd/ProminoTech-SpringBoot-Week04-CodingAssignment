@@ -42,42 +42,23 @@ public class DefaultJeepOrderService implements JeepOrderService {
     return jeepOrderDao.saveOrder(customer, jeep, color, engine, tire, price, options);
   }
   
-  /**
-   * 
-   * @param orderRequest
-   * @return
-   */
   private List<Option> getOption(OrderRequest orderRequest) {
     return jeepOrderDao.fetchOptions(orderRequest.getOptions());
   }
 
-  /**
-   * 
-   * @param orderRequest
-   * @return
-   */
   private Tire getTire(OrderRequest orderRequest) {
     return jeepOrderDao.fetchTire(orderRequest.getTire())
         .orElseThrow(() -> new NoSuchElementException(
             "Tire with ID=" + orderRequest.getTire() + " was not found"));
   }
 
-  /**
-   * 
-   * @param orderRequest
-   * @return
-   */
   private Engine getEngine(OrderRequest orderRequest) {
     return jeepOrderDao.fetchEngine(orderRequest.getEngine())
         .orElseThrow(() -> new NoSuchElementException(
             "Engine with ID=" + orderRequest.getEngine() + " was not found"));
   }
 
-  /**
-   * 
-   * @param orderRequest
-   * @return
-   */
+
   private Color getColor(OrderRequest orderRequest) {
     return jeepOrderDao.fetchColor(orderRequest.getColor())
         .orElseThrow(() -> new NoSuchElementException(
