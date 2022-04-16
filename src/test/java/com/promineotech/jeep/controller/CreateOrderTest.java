@@ -17,7 +17,6 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import com.promineotech.jeep.controller.support.CreateOrderTestSupport;
 
-
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 @Sql(scripts = {
@@ -58,7 +57,4 @@ class CreateOrderTest extends CreateOrderTestSupport{
     assertThat(order.getTire().getTireId()).isEqualTo("35_TOYO");
     assertThat(order.getOptions()).hasSize(6);
   }
-
-
-
 }
